@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: white;
+}
+#container{
+    background-color: rgb(223, 144, 79); 
+    width: 60%;
+    height: 600px;
+    margin: 2.2em auto;
+}
+.header{
+    margin: 1.4em auto;
+    width: fit-content;
+    padding: 5px;
+}
+#controls{
+    border:5px solid white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 85%;
+    height: 15%;
+    margin: .5em auto;
+    border-radius: 7px;
+    background-color: none;
+
+}
+#controls > button{
+    padding: 5px;
+    font-size: 1.1em;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid black;
+    border-radius: 7px;
+    cursor: pointer;
+}
