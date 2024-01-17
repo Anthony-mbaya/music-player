@@ -8,31 +8,31 @@ const playListSongs = document.getElementById("playlist-songs");
 const mySongs = [
     {
         no:0,
-        title:"cant",
-        artist:"costa titch",
-        duration:"5:00",
+        title:"Superstar",
+        artist:"Costa Titch",
+        duration:"5:45",
         source:"https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/cant-stay-down.mp3"
     
     },
     {
         no:1 ,
-        title:"learning ",
-        artist:"ed sheeran ",
-        duration:"5:00 ",
+        title:"Shape Of You ",
+        artist:"Ed Sheeran ",
+        duration:"4:32 ",
         source:"https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/still-learning.mp3 "
     },
     {
         no:2 ,
-        title:"cough ",
-        artist:"kizz daniel ",
+        title:"Cough",
+        artist:"Kizz Daniel",
         duration:"6:00 ",
         source:"https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/cruising-for-a-musing.mp3 "
     },
     {
         no:3 ,
-        title:"mama amina ",
-        artist:"marioo ft madjoz ",
-        duration:"5:00 ",
+        title:"John Cena",
+        artist:"Sho Madjoz",
+        duration:"3:10 ",
         source:"https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/never-not-favored.mp3 "
     } 
 ]
@@ -54,12 +54,12 @@ const dispSongs =(arr)=>{
     //creates a new array after performing a function for every array element. 
    const songToHtml = arr.map((theSong) => {
         return `
-        <li id="${theSong.no}">
-        <button onclick="playSongFunc(${theSong.no})"> 
-             <span class="display">${theSong.title}</span> 
-             <span class="display">${theSong.artist}</span>
-               <span class="display">${theSong.duration}</span>
-        </button> 
+        <li id="${theSong.no}" class="songList"> 
+        <button onclick="playSongFunc(${theSong.no})" class="dispButton"> 
+             <span class="display one">${theSong.title}</span> 
+             <span class="display two">${theSong.artist}</span>
+               <span class="display three">${theSong.duration}</span>
+        </button> </li>
         `;
         // used to concatenate all the elements of an array into a single string
     }).join("");
@@ -67,6 +67,21 @@ const dispSongs =(arr)=>{
 }
 
 dispSongs(alterData?.songs);
+
+//want to display current playing song
+const setPlayerDisplay =()=>{
+    const playingsongTitle = document.getElementById("sTitle");
+    const playingsongArtist = document.getElementById("sArtist");
+    const playingsongTime = document.getElementById("sTime");
+    
+    const currentTitle = alterData?.currentSong?.title;
+    const currentArtist = alterData?.currentSong?.artist;
+    const currentTime = alterData?.currentSong?.duration;
+
+    playingsongTitle.textContent = currentTitle ? currentTitle: "";
+    playingsongArtist.textContent = currentArtist ? currentArtist:"";
+    playingsongTime.textContent = currentTime ? currentTime: "";
+}
 
 //function to play song
 const playSongFunc = (no) =>{
@@ -136,10 +151,11 @@ const prevSongFunc =()=>{
 
 prevButton.addEventListener("click",prevSongFunc);
 
+
 const shuffleFunc =()=>{
     alterData?.songs.sort(() => Math.random() - 0.5);
-    alterData?.currentSong = null;
-    alterData?.songCurrentTime = 0;
+    alterData.currentSong = null;
+    alterData.songCurrentTime = 0;
 
     dispSongs(alterData?.songs);
     playSongFunc();
@@ -148,14 +164,18 @@ const shuffleFunc =()=>{
 
 shuffleButton.addEventListener("click",shuffleFunc);
 
-//want to display current playing song
-const setPlayerDisplay =()=>{
-    const playingsongTitle = document.getElementById("sTitle");
-    const playingsongArtist = document.getElementById("sArtist");
-    
-    const currentTitle = alterData?.currentSong?.title;
-    const currentArtist = alterData?.currentSong?.artist;
-
-    playingsongTitle.textContent = currentTitle ? currentTitle: "";
-    playingsongArtist.textContent = currentArtist ? currentArtist:"";
+//creating an autonext
+audio.addEventListener("ended",() => {
+const currentSongPlayingInd = getPlayingSongIndex();
+const autoNext = alterData?.songs[currentSongPlayingInd + 1] !== undefined;
+if (autoNext) {
+    nextSongFunc();
+}else{
+    alterData,currentSong - null;
+    alterData.songCurrentTime = 0;
+    pauseSongFunc();
+    setPlayerDisplay();
 }
+});
+
+

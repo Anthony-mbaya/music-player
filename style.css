@@ -7,14 +7,16 @@ body{
 }
 #container{
     background-color: rgb(223, 144, 79); 
-    width: 60%;
+    width: 40%;
     height: 600px;
-    margin: 2.2em auto;
+    margin: 1em auto;
+    border-radius: 10px 9em 10px 9em;
 }
 .header{
-    margin: 1.4em auto;
-    width: fit-content;
-    padding: 5px;
+    margin: auto;
+    width: fit-content; 
+    font-size: 3em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #controls{
     border:5px solid white;
@@ -29,7 +31,7 @@ body{
 
 }
 #controls > button{
-    padding: 5px;
+    padding: 8px;
     font-size: 1.1em;
     background-color: rgb(255, 255, 255);
     border: 3px solid black;
@@ -37,7 +39,40 @@ body{
     cursor: pointer;
 }
 #dispCurrentSong{
-    border: 2px solid red;
-    width: 80%;
-    height: 200px;
+    border: 5px solid white;
+    width: 85%;
+    height: 12%;
+    margin: 1em auto;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
+#dispCurrentSong > p{
+    color: black;
+    font-size: 1.4em;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+#playlist{
+    border: 5px solid white; 
+    width: 85%;
+    height: 200px;
+    margin: 1em auto;
+}
+.dispButton{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    border-radius: 5px;
+}
+.display{
+    color:black;
+    font-size: 1.5em;  
+   padding: 7px;
+}
+.songList{
+    text-decoration: none;
+}
+ 
